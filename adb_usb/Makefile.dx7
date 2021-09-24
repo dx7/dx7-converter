@@ -1,0 +1,9 @@
+TARGET = adb_usb_dx7
+SRC = matrix.c led.c led_dx7.c adb.c
+MCU = atmega32u4
+CONFIG_H = config_dx7.h
+KEYMAP=dx7
+include Makefile
+
+flash:
+	avrdude -patmega32u4 -cavr109 -b57600 -Uflash:w:$(TARGET).hex -P$(shell ls -1 /dev/tty.usbmodem*)

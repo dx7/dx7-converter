@@ -1,0 +1,13 @@
+TARGET                 = m0110_usb_dx7
+SRC                    = matrix.c led.c led_dx7.c m0110.c
+MOUSEKEY_ENABLE        = no
+UNIMAP_ENABLE          = yes
+KEYMAP_SECTION_ENABLE  = yes
+MCU                    = atmega32u4
+KEYMAP                 = dx7
+CONFIG_H               = config_dx7.h
+
+include Makefile
+
+flash:
+	avrdude -patmega32u4 -cavr109 -b57600 -Uflash:w:$(TARGET).hex -P$(shell ls -1 /dev/tty.usbmodem*)
